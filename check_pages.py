@@ -22,7 +22,9 @@ def compare(expected, actual):
         for left, right in zip(expected, actual):
             compare(left, right)
     elif isinstance(expected, float):
-        assert math.isclose(expected, actual, rel_tol=1e-12, abs_tol=1e-10), (expected, actual)
+        # Python 3.12 compensates float sums. Subtracting large totals can
+        # leave sub-microdollar differences even when the balance is zero.
+        assert math.isclose(expected, actual, rel_tol=1e-12, abs_tol=1e-6), (expected, actual)
     else:
         assert expected == actual, (expected, actual)
 
