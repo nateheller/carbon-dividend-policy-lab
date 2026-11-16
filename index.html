@@ -48,13 +48,17 @@
 <form method="get" action="/">
 <div class="pair policies">
 <div class="policy">
-<label for="a">First policy</label>
-<select id="a" name="a" aria-describedby="a-hint">$options_a</select>
+<fieldset aria-describedby="a-hint">
+<legend>First policy</legend>
+$options_a
+</fieldset>
 <p id="a-hint" class="hint">$hint_a</p>
 </div>
 <div class="policy">
-<label for="b">Second policy</label>
-<select id="b" name="b" aria-describedby="b-hint">$options_b</select>
+<fieldset aria-describedby="b-hint">
+<legend>Second policy</legend>
+$options_b
+</fieldset>
 <p id="b-hint" class="hint">$hint_b</p>
 </div>
 </div>
@@ -99,6 +103,8 @@
 </div>
 </div>
 <div class="snapshot" id="snapshot"></div>
+<p class="result-note">Both policies use the same assumed emissions reduction. They differ in who receives a dividend and how much they receive. With targeted payments, households outside the lowest two income groups receive no dividend.</p>
+<p class="result-note">The starting 8% reduction is a scenario assumption. The model does not estimate the causal effect of the charge. <a href="#methodology">About these estimates</a></p>
 </section>
 
 <section class="card explanation" aria-labelledby="happened">
@@ -128,6 +134,7 @@
 <p id="fuel-response" class="hint"></p>
 <figure class="emissions-figure">
 <figcaption>Direct emissions from household gasoline and natural gas (million tonnes of CO₂)</figcaption>
+<p id="emissions-endpoints"></p>
 <div class="legend"><span class="baseline-key">Without carbon charge</span><span class="modeled-key">Modeled with charge</span></div>
 <div id="chart" class="chart" aria-hidden="true"></div>
 </figure>
@@ -193,7 +200,7 @@
 
 <details>
 <summary>Inputs, formulas and limitations</summary>
-<p><strong>Published inputs.</strong> Statistics Canada’s 2023 Survey of Household Spending supplies counts and mean household sizes. Published federal rates (2024–25) and combustion factors are used for gasoline and natural gas. The historical consumer fuel charge was set to zero effective April 2025. All policy settings in this lab are hypothetical.</p>
+<p id="methodology" tabindex="-1"><strong>Published inputs.</strong> Statistics Canada’s 2023 Survey of Household Spending supplies counts and mean household sizes. Published federal rates (2024–25) and combustion factors are used for gasoline and natural gas. The historical consumer fuel charge was set to zero effective April 2025. All policy settings in this lab are hypothetical.</p>
 <p><strong>Assumed inputs.</strong> The lab uses five invented annual fuel profiles, holds household counts fixed, and passes the whole fuel charge to buyers. It excludes GST, indirect price effects, other fuels, industry and the value of fuel savings.</p>
 <p><strong>Calculation.</strong> The assumed 2030 fuel reduction equals response ÷ 100 × price ÷ 100. It phases in by one quarter per year from 2027 to 2030. Each fuel’s remaining volume is multiplied by its published charge rate × price ÷ 80. The total charge across all households × the share returned gives the payout pool. Each plan distributes that same pool using its own eligibility and weights. Direct CO₂ is remaining fuel volume × published combustion factors, summed across households.</p>
 <p>See the <a href="/README.md">full source inventory and methodology</a> and <a href="/inputs.json">versioned inputs</a> for exact rates, units, definitions and provenance.</p>

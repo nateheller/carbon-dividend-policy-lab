@@ -37,8 +37,9 @@ a { color: var(--green); text-underline-offset: .22em; }
 .policies { margin-top: 14px; }
 .policy { min-width: 0; padding: 14px; border-radius: 12px; background: #eaf2e7; }
 .policy:nth-child(2) { background: #f1ebdc; }
-
+.policy fieldset { margin-bottom: 0; }
 .policy .hint { margin-bottom: 0; }
+.result-note { margin-top: 12px; }
 .charge { max-width: 38rem; }
 .charge input, .settings input { max-width: 8rem; }
 .snapshot { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
@@ -68,7 +69,20 @@ a { color: var(--green); text-underline-offset: .22em; }
 .results { display: grid; gap: 18px; min-width: 0; }
 .card { background: var(--paper); border: 1px solid var(--line); border-radius: 15px; padding: 21px; min-width: 0; }
 .choices label { display: block; margin-block: 14px 4px; font-weight: 700; }
-.choices .policy label { margin-top: 0; }
+.choices .policy label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin: 0 0 6px;
+  padding: 6px 9px;
+  border: 1px solid #778d81;
+  border-radius: 8px;
+  background: var(--paper);
+  cursor: pointer;
+}
+.policy label:has(:checked) { background: #d4ebdc; border-color: var(--green); }
+.policy input { margin: 0; accent-color: var(--green); }
 select, input, button { font: inherit; color: inherit; }
 select, input[type=number] { width: 100%; padding: 8px; min-height: 44px; border: 1px solid #778d81; border-radius: 7px; background: #fff; }
 small { display: block; margin-top: 5px; font-size: .87rem; }
@@ -103,6 +117,7 @@ legend { font-weight: 700; padding: 0 0 7px; }
 .climate-summary { margin-top: 10px; font-size: 1.15rem; font-weight: 700; }
 .emissions-figure { margin: 16px 0 0; padding: 14px clamp(8px, 2vw, 20px) 4px; background: #f2f6ef; border: 1px solid var(--line); border-radius: 12px; }
 .emissions-figure figcaption { color: var(--muted); margin-bottom: 7px; }
+#emissions-endpoints { margin-bottom: 10px; font-weight: 700; }
 .legend span { display: inline-flex; gap: 8px; align-items: center; }
 .legend span::before { content: ""; width: 24px; border-top: 3px solid var(--green); }
 .legend .baseline-key::before { border-top: 3px dashed #5d6765; }
@@ -140,7 +155,6 @@ footer { padding-block: 28px; color: var(--muted); font-size: .9rem; }
   .pair, .snapshot { grid-template-columns: 1fr; }
   .nav { column-gap: 14px; font-size: .88rem; }
   .goal { grid-template-columns: 84px minmax(0, 1fr); }
-  .policy select { padding-inline: 6px; font-size: .875rem; }
   .card { padding: 15px; }
 }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

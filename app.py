@@ -55,8 +55,11 @@ def render(result):
     wm = external["with_measures_2030_mt_co2e"]
     wam = external["with_additional_measures_2030_mt_co2e"]
     options = {
-        slot: "".join(f'<option value="{key}"{" selected" if settings[slot] == key else ""}>{value}</option>'
-                      for key, value in POLICY_NAMES.items())
+        slot: "\n".join(
+            f'<label><input type="radio" name="{slot}" value="{key}"'
+            f'{" checked" if settings[slot] == key else ""}> <span>{value}</span></label>'
+            for key, value in POLICY_NAMES.items()
+        )
         for slot in ("a", "b")
     }
     household_rows = "".join(

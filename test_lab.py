@@ -67,7 +67,7 @@ class PolicyLabTests(unittest.TestCase):
     def test_front_end_routes_settings_into_results(self):
         page = render(simulate({"price": "100", "a": "person", "b": "all"})).decode()
         self.assertIn('name="price" type="number" value="100"', page)
-        self.assertIn('<option value="person" selected>', page)
+        self.assertIn('<input type="radio" name="a" value="person" checked>', page)
         payload = page.split('<script id="initial" type="application/json">')[1].split("</script>")[0]
         self.assertEqual(json.loads(payload)["result"], simulate({"price": "100", "a": "person", "b": "all"}))
         self.assertIn('Explore the details', page)

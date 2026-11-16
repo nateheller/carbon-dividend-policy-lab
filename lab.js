@@ -124,7 +124,11 @@ function renderGoals(row) {
 function renderEmissions() {
   const { baseline_mt_co2: baseline, years, settings } = current;
   const row = final(current);
-  const tonnes = Math.round((baseline - row.emissions_mt_co2) * 1e6);
+  const difference = baseline - row.emissions_mt_co2;
+  const tonnes = Math.round(difference * 1e6);
+  byId("emissions-endpoints").textContent =
+    `2030 · Without charge ${baseline.toFixed(3)} Mt · Modeled with charge ${row.emissions_mt_co2.toFixed(3)} Mt · ` +
+    (difference ? `Approximately ${difference.toFixed(3)} Mt lower` : "0 Mt difference");
   byId("climate-summary").textContent = row.reduction
     ? `2030 · ${percent.format(row.reduction)} lower · ${count.format(tonnes)} fewer tonnes of CO₂`
     : "2030 · 0% difference · 0 tonnes of CO₂ difference";
@@ -356,7 +360,7 @@ currencySelect.addEventListener("change", () => {
 });
 byId("undo").addEventListener("click", () => {
   if (history.length) commit(history.pop(), "Last change undone.", false);
-  if (byId("undo").disabled) form.elements.a.focus();
+  if (byId("undo").disabled) form.querySelector('input[name="a"]:checked').focus();
 });
 byId("reset").addEventListener("click", () => {
   cancelUpdate();
@@ -371,9 +375,9 @@ byId("reset").addEventListener("click", () => {
     updateButtons();
     fetchResult(defaults, "Starting settings restored.");
   }
-  if (byId("reset").disabled) form.elements.a.focus();
+  if (byId("reset").disabled) form.querySelector('input[name="a"]:checked').focus();
 });
-byId("details").open = false;
+if (window.location.hash !== "#methodology") byId("details").open = false;
 writeSettings(initial.settings);
 document.querySelectorAll(".guided, .actions").forEach(element => element.hidden = false);
 if (initial.settings.response !== defaults.response || initial.settings.recycle !== defaults.recycle) {
