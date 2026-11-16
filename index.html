@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carbon Dividend Policy Lab</title>
+<link rel="stylesheet" href="/lab.css">
+<script src="/lab.js" defer></script>
+<noscript><style>.guide a[href="#results"], .guide a[href="#households"] {display: none}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#choices">Skip to policy choices</a>
+<header class="hero"><div class="wrap">
+<p class="eyebrow">Alberta pilot · International Sibling Society</p>
+<h1>Carbon Dividend Policy Lab</h1>
+<p>Can a charge on fuel cut carbon pollution while helping households cover their extra costs?</p>
+<a class="hero-link" href="#choices">Skip to policy choices <span aria-hidden="true">↓</span></a>
+</div></header>
+<nav class="guide" aria-label="Explore the lab"><div class="wrap nav">
+<a href="#idea">How this works</a><a href="#choices">Policy choices</a><a href="#results">Results</a><a href="#households">Households</a><a href="#goals">Global Goals</a>
+</div></nav>
+<main class="wrap">
+<section id="idea" class="intro" tabindex="-1">
+<h2>One global idea, one Alberta pilot</h2>
+<div class="brief">
+<div>
+<h3>The big idea</h3>
+<p>The ISS Accelerator proposes charging for carbon pollution on a global scale and returning money to people. The payment is called a <strong>carbon dividend</strong>. A higher fuel price could encourage people to use less, while the dividend could help cover the added cost.</p>
+</div>
+<div>
+<h3>Why Alberta?</h3>
+<p>Alberta makes the idea manageable to explore. Published household counts and sizes by income group and historical Canadian carbon-charge rates give us a starting point. This Alberta pilot illustrates how the policy could work. It cannot validate ISS’s global projections.</p>
+</div>
+</div>
+<h3>Follow the fuel and the money</h3>
+<ol class="flow">
+<li><span aria-hidden="true">1</span><div><h3>People buy fuel</h3><p>Burning gasoline to drive or natural gas to heat a home releases carbon dioxide, a gas that warms the planet.</p></div></li>
+<li><span aria-hidden="true">2</span><div><h3>A charge raises the price</h3><p>The more fuel a household buys, the more it pays in extra charges. Some households may use less fuel.</p></div></li>
+<li><span aria-hidden="true">3</span><div><h3>Money goes back to homes</h3><p>You choose who gets a payment and how much of the money collected goes back to households.</p></div></li>
+</ol>
+<p class="scope"><strong>What you can explore.</strong> Compare direct charges on gasoline and natural gas, payments to five household income groups, and what could happen to emissions if people use less fuel through 2030. The model uses invented fuel-use profiles and leaves out industry, other fuels, costs passed through goods and services, and the money saved from buying less fuel.</p>
+</section>
+
+<section id="choices" class="card choices" tabindex="-1">
+<h2>Decide who gets the money</h2>
+<p class="hint">Compare two ways to distribute the same pool of money. Change either policy to see which households receive a payment and how much they get back.</p>
+<form method="get" action="/">
+<div class="pair policies">
+<div class="policy">
+<label for="a">First policy</label>
+<select id="a" name="a" aria-describedby="a-hint">$options_a</select>
+<p id="a-hint" class="hint">$hint_a</p>
+</div>
+<div class="policy">
+<label for="b">Second policy</label>
+<select id="b" name="b" aria-describedby="b-hint">$options_b</select>
+<p id="b-hint" class="hint">$hint_b</p>
+</div>
+</div>
+<div class="charge">
+<label for="price">How big is the fuel charge?</label>
+<input id="price" name="price" type="number" value="$price" min="0" max="200" required aria-describedby="price-hint">
+<small id="price-hint">CAD per tonne of carbon pollution. The starting value of CAD 80 uses the historical 2024–25 rate. Enter 0 to turn the charge off.</small>
+</div>
+<details class="settings">
+<summary>Change how much is returned or how people respond</summary>
+<label for="recycle">What share of the money goes back?</label>
+<div class="unit"><input id="recycle" name="recycle" type="number" value="$recycle" min="0" max="100" required aria-describedby="recycle-hint"><span aria-hidden="true">%</span></div>
+<small id="recycle-hint">Percent of the money collected. Enter 100 to return it all.</small>
+<label for="response">How much less fuel might people use?</label>
+<div class="unit"><input id="response" name="response" type="number" value="$response" min="0" max="30" required aria-describedby="response-hint"><span aria-hidden="true">%</span></div>
+<small id="response-hint">Pick an assumed percent drop in fuel use by 2030 if the charge were CAD 100 per tonne. The model scales it with your charge. Enter 0 to keep fuel use steady.</small>
+</details>
+<div class="actions" hidden><button type="button" id="undo" disabled>Undo</button><button type="button" id="reset">Start over</button></div>
+<noscript><button type="submit">Update results</button></noscript>
+</form>
+<p id="update-status" class="hint" role="status"></p>
+</section>
+
+<div class="results">
+<section id="results" class="card guided" tabindex="-1" hidden>
+<h2>What happens in 2030?</h2>
+<p class="hint">Compare the average household in the lowest income group and the emissions from both fuels.</p>
+<div class="currency-control">
+<div class="currency-field">
+<label for="display-currency">Display currency</label>
+<select id="display-currency" aria-describedby="currency-help currency-rate">
+<option value="CAD" selected>CAD · Canadian dollar</option>
+<option value="USD">USD · US dollar</option>
+<option value="EUR">EUR · Euro</option>
+<option value="GBP">GBP · British pound</option>
+</select>
+</div>
+<div>
+<small id="currency-help">Conversion is for display convenience only. The policy stays the same, and converted amounts do not compare purchasing power. Inputs and downloads use CAD.</small>
+<small id="currency-provenance" hidden><a href="https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/">Bank of Canada daily averages</a></small>
+<small id="currency-rate" role="status" aria-atomic="true"></small>
+</div>
+</div>
+<div class="snapshot" id="snapshot"></div>
+</section>
+
+<section class="card explanation" aria-labelledby="happened">
+<h2 id="happened">Why the results change</h2>
+<p id="story" class="hint" role="status">Both policies use the same fuel charge and fuel-use assumption.</p>
+<p>Dividend distribution alone does not change emissions in this model. The two policies can return different amounts to the same household, while both assume it buys the same amount of fuel.</p>
+</section>
+
+<section id="households" class="card guided" tabindex="-1" hidden>
+<h2>Who is affected?</h2>
+<p class="hint">Pick a group to see what an average household pays and gets back in 2030. Each group represents about one fifth of Alberta households, ranked by income. Amounts are in <span id="household-currency">CAD</span> per year.</p>
+<fieldset id="groups"><legend>Choose an income group</legend>
+<div class="groups">
+<label><input type="radio" name="group" value="0" checked><span>Lowest</span></label>
+<label><input type="radio" name="group" value="1"><span>Lower</span></label>
+<label><input type="radio" name="group" value="2"><span>Middle</span></label>
+<label><input type="radio" name="group" value="3"><span>Higher</span></label>
+<label><input type="radio" name="group" value="4"><span>Highest</span></label>
+</div></fieldset>
+<div id="household-cards" class="pair"></div>
+<p id="household-comparison" class="hint"></p>
+</section>
+
+<section id="emissions" class="card guided" hidden>
+<h2>Emissions through 2030</h2>
+<p id="climate-summary" class="climate-summary" role="status"></p>
+<p id="fuel-response" class="hint"></p>
+<figure class="emissions-figure">
+<figcaption>Direct emissions from household gasoline and natural gas (million tonnes of CO₂)</figcaption>
+<div class="legend"><span class="baseline-key">Without carbon charge</span><span class="modeled-key">Modeled with charge</span></div>
+<div id="chart" class="chart" aria-hidden="true"></div>
+</figure>
+<details class="chart-data">
+<summary>View chart data by year</summary>
+<table>
+<caption class="sr-only">Annual direct household emissions in million tonnes of CO₂</caption>
+<thead><tr><th scope="col">Year</th><th scope="col">Without carbon charge</th><th scope="col">Modeled with charge</th><th scope="col">Reduction</th></tr></thead>
+<tbody id="chart-rows">$emission_rows</tbody>
+</table>
+</details>
+</section>
+
+<section id="goals" class="goals" tabindex="-1">
+<h2>Connect your results to the Global Goals</h2>
+<p class="hint">Use the results to discuss where a policy could help and what else you’d need to know.</p>
+<div class="pair">
+<article class="goal">
+<a class="goal-icon" href="https://sdgs.un.org/goals/goal1"><img src="/assets/goal-01.jpg" alt="United Nations Goal 1 · No Poverty" width="96" height="96"></a>
+<div><h3>Covering extra fuel costs</h3><p id="goal-1">Compare the lowest income group’s extra costs and payments.</p><p class="goal-limit">A positive balance may ease pressure on household budgets. Poverty rates are outside the model.</p></div>
+</article>
+<article class="goal">
+<a class="goal-icon" href="https://sdgs.un.org/goals/goal10"><img src="/assets/goal-10.jpg" alt="United Nations Goal 10 · Reduced Inequalities" width="96" height="96"></a>
+<div><h3>Who receives more support?</h3><p id="goal-10">Compare how much each approach returns to the lowest and highest income groups.</p><p class="goal-limit">Who receives the money is a question of fairness. The model leaves out overall income inequality.</p></div>
+</article>
+<article class="goal">
+<a class="goal-icon" href="https://sdgs.un.org/goals/goal13"><img src="/assets/goal-13.jpg" alt="United Nations Goal 13 · Climate Action" width="96" height="96"></a>
+<div><h3>Using less fuel</h3><p id="goal-13">See how your fuel charge and fuel-use assumption affect emissions.</p><p class="goal-limit">This comparison covers direct carbon dioxide from the two fuels. It cannot establish national or global climate progress.</p></div>
+</article>
+<article class="goal">
+<a class="goal-icon" href="https://sdgs.un.org/goals/goal7"><img src="/assets/goal-07.jpg" alt="United Nations Goal 7 · Affordable and Clean Energy" width="96" height="96"></a>
+<div><h3>Keeping homes warm</h3><p id="goal-7">A carbon charge can make heating with natural gas more expensive.</p><p class="goal-limit">These results cover the direct gas charge. Energy affordability, access and switching to cleaner heat are outside the model.</p></div>
+</article>
+</div>
+<p class="attribution">The content of this publication has not been approved by the United Nations and does not reflect the views of the United Nations or its officials or Member States. See the <a href="https://www.un.org/sustainabledevelopment/">United Nations Sustainable Development Goals</a> and <a href="https://www.un.org/sustainabledevelopment/wp-content/uploads/2023/09/E_SDG_Guidelines_Sep20238.pdf">icon usage guidelines</a>.</p>
+</section>
+
+<details id="details" class="card advanced" open>
+<summary>Explore the details</summary>
+<h3>Household results in 2030</h3>
+<p class="hint">Annual <span id="table-currency">CAD</span> per household by before-tax income quintile. Net equals dividend minus the direct fuel charge.</p>
+<div class="scroll" tabindex="0" role="region" aria-label="Household impact table"><table>
+<caption id="table-designs">First · $design_a ($reach_a eligible households)<br>Second · $design_b ($reach_b eligible households)</caption>
+<thead><tr><th scope="col">Income group</th><th scope="col">Households</th><th scope="col">Charge</th><th scope="col">First payment</th><th scope="col">First balance</th><th scope="col">Second payment</th><th scope="col">Second balance</th></tr></thead>
+<tbody id="household-rows">$household_rows</tbody>
+</table></div>
+
+<p id="budget" class="hint">2030 charge revenue is $revenue. Dividends total $pool, leaving $retained outside the payout pool.</p>
+<h3>Annual emissions</h3>
+<div class="scroll" tabindex="0" role="region" aria-label="Emissions scenario table"><table>
+<thead><tr><th scope="col">Year</th><th scope="col">Without carbon charge (Mt CO₂)</th><th scope="col">Modeled with charge (Mt CO₂)</th><th scope="col">Reduction</th></tr></thead>
+<tbody id="emission-rows">$emission_rows</tbody></table></div>
+<section class="card context">
+<h2>Canada’s 2030 climate target</h2>
+<p class="hint">National context from Canada’s emissions inventory and federal progress report.</p>
+<div class="metrics">
+<div class="metric"><strong>$national_2024 Mt</strong>2024 national inventory · $national_change below 2005 ($national_2005 Mt), excluding land use</div>
+<div class="metric"><strong>$wam / $wm Mt</strong>2030 federal projections · with additional measures / with measures</div>
+<div class="metric"><strong>$target Mt</strong>2030 national target range as presented in the 2025 federal progress report</div>
+</div>
+<p class="hint">The federal projections are $national_gap Mt CO₂e above the upper target limit using that report’s accounting. Alberta’s inventory was $alberta_2005 Mt CO₂e in 2005 and $alberta_2024 Mt in 2024, excluding land use. The lab’s household scenarios leave these national figures fixed.</p>
+</section>
+
+<details>
+<summary>Inputs, formulas and limitations</summary>
+<p><strong>Published inputs.</strong> Statistics Canada’s 2023 Survey of Household Spending supplies counts and mean household sizes. Published federal rates (2024–25) and combustion factors are used for gasoline and natural gas. The historical consumer fuel charge was set to zero effective April 2025. All policy settings in this lab are hypothetical.</p>
+<p><strong>Assumed inputs.</strong> The lab uses five invented annual fuel profiles, holds household counts fixed, and passes the whole fuel charge to buyers. It excludes GST, indirect price effects, other fuels, industry and the value of fuel savings.</p>
+<p><strong>Calculation.</strong> The assumed 2030 fuel reduction equals response ÷ 100 × price ÷ 100. It phases in by one quarter per year from 2027 to 2030. Each fuel’s remaining volume is multiplied by its published charge rate × price ÷ 80. The total charge across all households × the share returned gives the payout pool. Each plan distributes that same pool using its own eligibility and weights. Direct CO₂ is remaining fuel volume × published combustion factors, summed across households.</p>
+<p>See the <a href="/README.md">full source inventory and methodology</a> and <a href="/inputs.json">versioned inputs</a> for exact rates, units, definitions and provenance.</p>
+</details>
+<p><a id="download" href="/scenario.json?$query" download="carbon-dividend-scenario.json">Download scenario and full annual results (JSON, CAD)</a></p>
+</details>
+</div>
+</main>
+<footer class="wrap">Carbon Dividend Policy Lab · Independent ISS contribution</footer>
+<script id="initial" type="application/json">$initial</script>
+</body>
+</html>

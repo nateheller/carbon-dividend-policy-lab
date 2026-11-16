@@ -1,0 +1,22 @@
+{
+  "version": "2026-11-15-v1",
+  "observed": {
+    "households_2023": [332414, 335466, 334075, 334382, 334197],
+    "people_per_household_2023": [1.58, 2.16, 2.86, 3.38, 3.70],
+    "canada_inventory_mt_co2e": {"2005": 763, "2019": 748, "2020": 681, "2021": 691, "2022": 696, "2023": 687, "2024": 685},
+    "alberta_inventory_mt_co2e": {"2005": 251.2, "2024": 260.1},
+    "historical_charge": {"cad_per_tonne_co2e": 80, "cad_per_litre": 0.1761, "cad_per_m3": 0.1525},
+    "combustion_kg_co2": {"per_litre_gasoline": 2.307, "per_m3_natural_gas": 1.962}
+  },
+  "external_projection": {
+    "target_range_mt_co2e": [417, 455],
+    "with_measures_2030_mt_co2e": 600,
+    "with_additional_measures_2030_mt_co2e": 546
+  },
+  "assumptions": {
+    "baseline_litres_per_household": [650, 1150, 1650, 2100, 2600],
+    "baseline_m3_per_household": [950, 1500, 2000, 2450, 2850],
+    "first_year": 2027,
+    "last_year": 2030
+  }
+}
